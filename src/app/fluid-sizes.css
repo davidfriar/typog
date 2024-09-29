@@ -1,0 +1,26 @@
+:root {
+  @utopia typeScale({
+    minWidth: 390,
+    maxWidth: 1240,
+    minFontSize: 16,
+    maxFontSize: 20,
+    minTypeScale: 1.2,
+    maxTypeScale: 1.333,
+    positiveSteps: 6,
+    negativeSteps: 2,
+    prefix: "fluid-font",
+    relativeTo: "container"
+  });
+
+  @utopia spaceScale({
+  minWidth: 390,
+  maxWidth: 1240,
+  minSize: 16,
+  maxSize: 20,
+  positiveSteps: [1.5, 2, 3, 4, 6],
+  negativeSteps: [0.75, 0.5, 0.25],
+  customSizes: ["s-l", "m-xl", "m-2xl", "m-3xl"],
+  prefix: "space",
+  relativeTo: "container",
+});
+}

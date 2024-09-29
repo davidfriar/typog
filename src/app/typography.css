@@ -1,0 +1,140 @@
+@import "./fluid-sizes.css";
+
+@property --measure {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 100vw;
+}
+
+@property --rhythm {
+  syntax: "<length>";
+  inherits: true;
+  initial-value: 0;
+}
+
+:root {
+  --ON: initial;
+  --OFF: ;
+
+  --line-height: 1.4;
+  --heading-line-height: 1.15;
+  --heading-font: var(--text-font);
+  --text-padding: var(--space-m);
+  --standfirst-initial-dropcap: var(--OFF);
+  --standfirst-first-line-smallcaps: var(--ON);
+  --show-gridlines: var(--OFF);
+}
+
+html {
+  line-height: var(--line-height);
+}
+
+body {
+  font-family: var(--text-font);
+}
+
+.text-container {
+  container-type: inline-size;
+  width: 70%;
+  margin-inline: auto;
+}
+
+.text {
+  --base-font-size: var(--fluid-font-0);
+  --measure: 66ch;
+  --rhythm: 1lh;
+  font-size: var(--base-font-size);
+  font-optical-sizing: none;
+  padding: var(--text-padding);
+  background-image: var(
+    --show-gridlines,
+    repeating-linear-gradient(to top, lightskyblue 0 1px, transparent 1px 1lh)
+  );
+
+  :where(*) {
+    margin-block: 0;
+    padding-block: 0;
+  }
+
+  :where(p + p) {
+    margin-block-start: var(--rhythm);
+  }
+
+  :where(blockquote) {
+    margin-block-start: calc(var(--rhythm) / 2);
+    margin-block-end: calc(var(--rhythm) / 2);
+  }
+
+  /* h1:not(:first-child), */
+  /* h2:not(:first-child), */
+  /* h3:not(:first-child), */
+  /* h4:not(:first-child), */
+  /* h5:not(:first-child), */
+  /* h6:not(:first-child) { */
+  :where(h1, h2, h3, h4, h5, h6):not(:first-child) {
+    margin-block-start: calc(
+      /*Attempt to preserve the vertical rhythm based on the root line height (rlh) by calculating 
+ * the amount of padding needed to make the height of the block a multiple of rlh. Note that this
+ * doesn't work when we have multiple lines of non-rlh height, e.g. a wrapped headline or
+ * a multiline blockquote*/
+        round(up, 1lh, var(--rhythm)) - 1lh + calc(var(--rhythm) / 2)
+    );
+  }
+
+  :where(h1, h2, h3, h4, h5, h6):not(:last-child) {
+    margin-block-end: calc(var(--rhythm) / 2);
+  }
+
+  :where(p, h1, h2, h3, h4, h5, h6, blockquote) {
+    max-width: var(--measure);
+  }
+
+  :where(h1, h2, h3, h4, h5, h6) {
+    font-family: var(--heading-font);
+    line-height: var(--heading-line-height);
+  }
+
+  :where(h1) {
+    font-size: var(--fluid-font-3);
+  }
+
+  :where(h2) {
+    font-size: var(--fluid-font-2);
+  }
+
+  :where(h3, h4, h5, h6) {
+    font-size: var(--fluid-font-1);
+  }
+
+  :where(p, blockquote) {
+    font-variant-numeric: oldstyle-nums;
+  }
+
+  :where(blockquote) {
+    font-size: var(--fluid-font--1);
+    font-style: italic;
+  }
+
+  :where(abbr) {
+    font-family: var(--small-caps-font);
+    font-variant: all-small-caps;
+  }
+
+  :where(.stand-first):first-line {
+    font-family: var(
+      var(--standfirst-first-line-smallcaps),
+      var(--small-caps-font)
+    );
+    /*usually undefined, but could be specified if small caps are supplied as a separate font*/
+    font-variant: var(--standfirst-first-line-smallcaps, all-small-caps);
+  }
+
+  :where(.stand-first)::first-letter {
+    initial-letter: var(--standfirst-initial-dropcap, 2 2);
+    font-variant: normal;
+  }
+
+  :where(.stand-first) {
+    font-size: var(--fluid-font-1);
+  }
+}
