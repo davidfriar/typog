@@ -52,6 +52,32 @@ export const alegreyaSans = localFont({
   variable: "--font-alegreya-sans",
 })
 
+export const nimbusSans = localFont({
+  src: [
+    {
+      path: "./fonts/nimbus-sans/NimbusSans-Regular.woff2",
+      weight: "400",
+      style: "normal",
+    },
+    {
+      path: "./fonts/nimbus-sans/NimbusSans-Italic.woff2",
+      weight: "400",
+      style: "italic",
+    },
+    {
+      path: "./fonts/nimbus-sans/NimbusSans-Bold.woff2",
+      weight: "700",
+      style: "normal",
+    },
+    {
+      path: "./fonts/nimbus-sans/NimbusSans-BoldItalic.woff2",
+      weight: "700",
+      style: "italic",
+    },
+  ],
+  variable: "--font-nimbus-sans",
+})
+
 export const firaSans = localFont({
   src: [
     {
@@ -273,6 +299,20 @@ export const crimson = localFont({
     },
   ],
   variable: "--font-crimson",
+})
+
+export const literata = localFont({
+  src: [
+    {
+      path: "./fonts/literata/Literata[opsz,wght].woff2",
+      style: "normal",
+    },
+    {
+      path: "./fonts/literata/Literata-Italic[opsz,wght].woff2",
+      style: "italic",
+    },
+  ],
+  variable: "--font-literata",
 })
 
 export const manrope = localFont({

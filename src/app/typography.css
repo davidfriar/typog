@@ -1,5 +1,17 @@
 @import "./fluid-sizes.css";
 
+@property --text-font {
+  syntax: "*";
+  inherits: true;
+  initial-value: serif;
+}
+
+@property --heading-font {
+  syntax: "*";
+  inherits: true;
+  initial-value: initial;
+}
+
 @property --measure {
   syntax: "<length>";
   inherits: true;
@@ -15,22 +27,6 @@
 :root {
   --ON: initial;
   --OFF: ;
-
-  --line-height: 1.4;
-  --heading-line-height: 1.15;
-  --heading-font: var(--text-font);
-  --text-padding: var(--space-m);
-  --standfirst-initial-dropcap: var(--OFF);
-  --standfirst-first-line-smallcaps: var(--ON);
-  --show-gridlines: var(--OFF);
-}
-
-html {
-  line-height: var(--line-height);
-}
-
-body {
-  font-family: var(--text-font);
 }
 
 .text-container {
@@ -40,10 +36,19 @@ body {
 }
 
 .text {
-  --base-font-size: var(--fluid-font-0);
   --measure: 66ch;
+  --line-height: 1.4;
+  --heading-line-height: 1.15;
+  /* --heading-font: var(--text-font); */
+  --text-padding: var(--space-m);
+  --standfirst-initial-dropcap: var(--OFF);
+  --standfirst-first-line-smallcaps: var(--ON);
+  --diagonal-fractions: var(--ON);
+  --show-gridlines: var(--OFF);
   --rhythm: 1lh;
-  font-size: var(--base-font-size);
+  font-family: var(--text-font);
+  line-height: var(--line-height);
+  font-size: var(--fluid-font-0);
   font-optical-sizing: none;
   padding: var(--text-padding);
   background-image: var(
@@ -65,19 +70,13 @@ body {
     margin-block-end: calc(var(--rhythm) / 2);
   }
 
-  /* h1:not(:first-child), */
-  /* h2:not(:first-child), */
-  /* h3:not(:first-child), */
-  /* h4:not(:first-child), */
-  /* h5:not(:first-child), */
-  /* h6:not(:first-child) { */
   :where(h1, h2, h3, h4, h5, h6):not(:first-child) {
-    margin-block-start: calc(
-      /*Attempt to preserve the vertical rhythm based on the root line height (rlh) by calculating 
+    /*Attempt to preserve the vertical rhythm based on the root line height (rlh) by calculating 
  * the amount of padding needed to make the height of the block a multiple of rlh. Note that this
  * doesn't work when we have multiple lines of non-rlh height, e.g. a wrapped headline or
  * a multiline blockquote*/
-        round(up, 1lh, var(--rhythm)) - 1lh + calc(var(--rhythm) / 2)
+    margin-block-start: calc(
+      round(up, 1lh, var(--rhythm)) - 1lh + calc(var(--rhythm) / 2)
     );
   }
 
@@ -90,8 +89,10 @@ body {
   }
 
   :where(h1, h2, h3, h4, h5, h6) {
-    font-family: var(--heading-font);
+    font-family: var(--heading-font, var(--text-font));
     line-height: var(--heading-line-height);
+    text-wrap: balance;
+    font-variant-numeric: lining-nums;
   }
 
   :where(h1) {
@@ -107,6 +108,7 @@ body {
   }
 
   :where(p, blockquote) {
+    text-wrap: pretty;
     font-variant-numeric: oldstyle-nums;
   }
 
@@ -130,11 +132,48 @@ body {
   }
 
   :where(.stand-first)::first-letter {
+    font-variant: var(--standfirst-initial-dropcap, normal);
     initial-letter: var(--standfirst-initial-dropcap, 2 2);
-    font-variant: normal;
+    margin-right: var(--standfirst-initial-dropcap, 0.5em);
   }
 
   :where(.stand-first) {
     font-size: var(--fluid-font-1);
+  }
+
+  :where(table) {
+    font-size: var(--fluid-font--1);
+    border-collapse: collapse;
+    margin-block: var(--rhythm);
+    margin-inline: auto;
+  }
+
+  :where(th, td) {
+    font-variant-numeric: lining-nums tabular-nums;
+    padding: 0.125em 0.5em 0.25em 0.5em;
+    line-height: 1;
+    text-align: left;
+  }
+
+  :where(caption) {
+    font-size: var(--fluid-font--1);
+    font-style: italic;
+    caption-side: bottom;
+  }
+
+  :where(sub) {
+    vertical-align: inherit;
+    font-size: inherit;
+    font-variant-position: sub;
+  }
+
+  :where(sup) {
+    vertical-align: inherit;
+    font-size: inherit;
+    font-variant-position: super;
+  }
+
+  :where(.frac) {
+    font-variant-numeric: diagonal-fractions;
   }
 }

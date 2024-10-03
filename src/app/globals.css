@@ -4,13 +4,59 @@
 
 @import "./typography.css";
 
-body {
-  margin: 0;
-  --text-font: var(--font-alegreya);
-  --heading-font: var(--font-alegreya-sans);
+:root {
   /* --small-caps-font: var(--font-piazzolla-sc); */
   /* --show-gridlines: var(--ON); */
   /* --standfirst-first-line-smallcaps: var(--OFF); */
 
   /* --show-gridlines: var(--ON); */
+}
+
+.text {
+  /* --measure: 30ch; */
+  --text-font: var(--font-alegreya-sans);
+  --heading-font: var(--font-alegreya-sans);
+  --show-gridlines: var(--ON);
+  --standfirst-first-line-smallcaps: var(--ON);
+  --standfirst-initial-dropcap: var(--ON);
+}
+
+body {
+  margin: 0;
+}
+
+.text table {
+  background-color: lightgray;
+}
+
+@media (max-width: 25em) {
+  .text {
+    table,
+    caption,
+    tbody,
+    tr,
+    th,
+    td {
+      display: block;
+      text-align: left;
+    }
+
+    tr {
+      padding-block: 1em;
+    }
+
+    thead,
+    th:empty,
+    td:empty {
+      display: none;
+      visibility: hidden;
+    }
+
+    th[data-title]:before,
+    td[data-title]:before {
+      content: attr(data-title) ":";
+      display: inline-block;
+      font-weight: 700;
+    }
+  }
 }

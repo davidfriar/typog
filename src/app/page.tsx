@@ -3,6 +3,7 @@ import styles from "./page.module.css"
 export default function Home() {
   return (
     <main>
+      <p>This is outside the text box</p>
       <div className="text-container">
         <div className="text">
           <h1>Sphinx of black quartz, judge my vow</h1>
@@ -112,6 +113,74 @@ export default function Home() {
             capitalized, as in <abbr>YTD</abbr> for year-to-date,{" "}
             <abbr>PCB</abbr> for printed circuit board and <abbr>FYI</abbr> for
             for your information.
+          </p>
+          <figure>
+            <table>
+              <caption>This is my table. A list of superfluous facts.</caption>
+              <thead>
+                <tr>
+                  <th>City</th>
+                  <th>Population</th>
+                  <th>Latitude</th>
+                  <th>Longitude</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td data-title="City">London</td>
+                  <td data-title="Population">9,748,000</td>
+                  <td data-title="Latitude">
+                    51&deg; 30&prime; 35.5140&Prime; N
+                  </td>
+                  <td data-title="Longitude">
+                    0&deg; 7&prime; 5.1312&Prime; W
+                  </td>
+                </tr>
+                <tr>
+                  <td data-title="City">Paris</td>
+                  <td data-title="Population">2,139,907</td>
+                  <td data-title="Latitude">
+                    48&deg; 51&prime; 52.9776&Prime; N
+                  </td>
+                  <td data-title="Longitude">
+                    2&deg; 20&prime; 56.4504&Prime; E
+                  </td>
+                </tr>
+                <tr>
+                  <td>Berlin</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+                <tr>
+                  <td>Madrid</td>
+                  <td></td>
+                  <td></td>
+                  <td></td>
+                </tr>
+              </tbody>
+            </table>
+          </figure>
+          <p>
+            A molecule may be homonuclear, that is, it consists of atoms of one
+            chemical element, e.g. two atoms in the oxygen molecule (O
+            <sub>2</sub>), or it may be heteronuclear, a chemical compound
+            composed of more than one element, e.g. water (two hydrogen atoms
+            and one oxygen atom: H<sub>2</sub>O).
+          </p>
+          <p>
+            In physics, mass–energy equivalence is the relationship between mass
+            and energy in a system&rsquo;s rest frame, where the two quantities
+            differ only by a multiplicative constant and the units of
+            measurement. The principle is described by the physicist Albert
+            Einstein&rsquo;s formula: E=mc<sup>2</sup>.
+          </p>
+          <p>
+            As Einstein shows, <span className="frac">1/100</span> of the
+            population have got their hands on{" "}
+            <span className="frac">99/100</span> of the wealth. Also{" "}
+            <span className="frac">1/3</span> of statistics are completely made
+            up.
           </p>
         </div>
       </div>

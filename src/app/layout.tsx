@@ -19,6 +19,8 @@ import {
   bitter,
   lato,
   crimson,
+  nimbusSans,
+  literata,
 } from "./fonts"
 
 export const metadata: Metadata = {
@@ -50,12 +52,14 @@ export default function RootLayout({
     bitter,
     lato,
     crimson,
+    nimbusSans,
+    literata,
   ]
     .map((f) => f.variable)
     .join(" ")
   return (
-    <html lang="en">
-      <body className={fontClassNames}>{children}</body>
+    <html lang="en" className={fontClassNames}>
+      <body>{children}</body>
     </html>
   )
 }
